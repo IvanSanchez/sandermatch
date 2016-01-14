@@ -8,10 +8,6 @@ Filesystem functions that return filenames matching a minimatch pattern
 
 `sandermatch` is a small javascript library that combines the Promise-based power of [`sander`](https://github.com/Rich-Harris/sander) with the regexp-matching power of [`minimatch`](https://github.com/isaacs/minimatch).
 
-It exports the following functions:
-
-``
-
 
 ## How 
 
@@ -20,13 +16,30 @@ It exports the following functions:
 ```js
 var sandermatch = require('sandermatch');
 
-sandermatch.lsrMatch('/tmp', '**.png').then(function(filenames){ console.log(filenames) });
+sandermatch.lsrMatch('/tmp', '**/*.png').then(function(filenames){ console.log(filenames) });
 ```
 
 The following functions are exported:
 
-``
+* `lsrMatch(...paths, patterns)`
+* `lsrMatchSync(...paths, patterns)`
+* `readdirMatch(...paths, patterns)`
+* `readdirMatchSync(...paths, patterns)`
 
+All of them have behaviour like their counterparts in [`sander`](https://github.com/Rich-Harris/sander), but the return value is not a Promise of an array with all files. Instead, it's a Promise of a Set with the filenames that match one of `patterns`.
+
+The resulting Set is ordered by the order of `patterns`, for example:
+
+```
+sandermatch.lsrMatch('.', ['**/*.js', '**/*.png']).then( function (filenames){
+	// filenames has all the *.js before any of the *.png files, e.g.
+	// - foo.js
+	// - bar.js
+	// - lib/whatever/whatever.js
+	// - logo.png
+	// - lib/whatever/assets/whatever.png
+} );
+```
 
 ## Compatibility
 
