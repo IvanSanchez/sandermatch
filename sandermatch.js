@@ -1,7 +1,6 @@
 
 var sander = require( 'sander' );
 
-
 // Synchronous helper function - given an array of filenames, run the minimatch
 // patterns.
 function _filterPattern(filenames, patterns) {
@@ -36,34 +35,41 @@ function _filterPattern(filenames, patterns) {
 // expressions.
 export function lsrMatch() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
-	var paths = arguments.slice(arguments.length-1);
+	var paths = arguments.slice(0, arguments.length-1);
 	return sander.lsr.call( paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
 };
 
-// // @function lsrMatchSync(...paths, patterns): Promise
-// // like `lsrMatch`, but using the 'lsrSync' function of sander.js instead.
-// export function lsrMatchSync(...paths, patterns) {
-// 	return sander.lsrSync.call( paths ).then( allFiles => {
-// 		return _filterPattern(allFiles, patterns);
-// 	});
-// };
-// 
-// // @function lsrMatchSync(...paths, patterns): Promise
-// // like `lsrMatch`, but using the 'readdir' function of sander.js instead.
-// export function readdirMatch(...paths, patterns) {
-// 	return sander.readdir.call( paths ).then( allFiles => {
-// 		return _filterPattern(allFiles, patterns);
-// 	});
-// };
-// 
-// // @function lsrMatchSync(...paths, patterns): Promise
-// // like `lsrMatch`, but using the 'readdirSync' function of sander.js instead.
-// export function readdirMatchSync(...paths, patterns) {
-// 	return sander.readdirSync.call( paths ).then( allFiles => {
-// 		return _filterPattern(allFiles, patterns);
-// 	});
-// };
+// @function lsrMatchSync(...paths, patterns): Promise
+// like `lsrMatch`, but using the 'lsrSync' function of sander.js instead.
+export function lsrMatchSync() {
+	var patterns = arguments[arguments.length-1];
+	var paths = arguments.slice(0, arguments.length-1);
+	return sander.lsrSync.call( paths ).then( allFiles => {
+		console.log(allFiles[0]);
+		return _filterPattern(allFiles, patterns);
+	});
+};
+
+// @function lsrMatchSync(...paths, patterns): Promise
+// like `lsrMatch`, but using the 'readdir' function of sander.js instead.
+export function readdirMatch() {
+	var patterns = arguments[arguments.length-1];
+	var paths = arguments.slice(0, arguments.length-1);
+	return sander.readdir.call( paths ).then( allFiles => {
+		return _filterPattern(allFiles, patterns);
+	});
+};
+
+// @function lsrMatchSync(...paths, patterns): Promise
+// like `lsrMatch`, but using the 'readdirSync' function of sander.js instead.
+export function readdirMatchSync() {
+	var patterns = arguments[arguments.length-1];
+	var paths = arguments.slice(0, arguments.length-1);
+	return sander.readdirSync.call( paths ).then( allFiles => {
+		return _filterPattern(allFiles, patterns);
+	});
+};
 
 

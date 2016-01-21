@@ -1,11 +1,15 @@
 {
   "name": "sandermatch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Filesystem functions that return filenames matching a minimatch pattern",
   "main": "es5/sandermatch.js",
   "jsnext:main": "src/sandermatch.js",
   "scripts": {
     "install": "js node_modules/.bin/gobble -f build es5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IvanSanchez/sandermatch.git"
   },
   "keywords": [
     "sander",
