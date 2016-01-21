@@ -37,7 +37,7 @@ function _filterPattern(filenames, patterns) {
 export function lsrMatch() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
 	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
-	return sander.lsr.call( paths ).then( allFiles => {
+	return sander.lsr.apply( this, paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
 };
@@ -47,7 +47,7 @@ export function lsrMatch() {	// Apparently babelJS chokes on `(...paths, pattern
 export function lsrMatchSync() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
 	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
-	return sander.lsrSync.call( paths ).then( allFiles => {
+	return sander.lsrSync.apply( this, paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
 };
@@ -57,7 +57,7 @@ export function lsrMatchSync() {	// Apparently babelJS chokes on `(...paths, pat
 export function readdirMatch() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
 	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
-	return sander.readdir.call( paths ).then( allFiles => {
+	return sander.readdir.apply( this, paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
 };
@@ -67,7 +67,7 @@ export function readdirMatch() {	// Apparently babelJS chokes on `(...paths, pat
 export function readdirMatchSync() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
 	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
-	return sander.readdirSync.call( paths ).then( allFiles => {
+	return sander.readdirSync.apply( this, paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
 };
