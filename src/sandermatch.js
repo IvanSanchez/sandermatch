@@ -36,7 +36,7 @@ function _filterPattern(filenames, patterns) {
 // will be ordered, the ones matching the first pattern first.
 export function lsrMatch() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
-	var paths = Array.prototype.slice.call(arguments, arguments.length-1);
+	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
 	return sander.lsr.call( paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
@@ -46,7 +46,7 @@ export function lsrMatch() {	// Apparently babelJS chokes on `(...paths, pattern
 // like `lsrMatch`, but using the 'lsrSync' function of sander.js instead.
 export function lsrMatchSync() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
-	var paths = arguments.slice(arguments.length-1);
+	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
 	return sander.lsrSync.call( paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
@@ -56,7 +56,7 @@ export function lsrMatchSync() {	// Apparently babelJS chokes on `(...paths, pat
 // like `lsrMatch`, but using the 'readdir' function of sander.js instead.
 export function readdirMatch() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
-	var paths = arguments.slice(arguments.length-1);
+	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
 	return sander.readdir.call( paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
@@ -66,7 +66,7 @@ export function readdirMatch() {	// Apparently babelJS chokes on `(...paths, pat
 // like `lsrMatch`, but using the 'readdirSync' function of sander.js instead.
 export function readdirMatchSync() {	// Apparently babelJS chokes on `(...paths, patterns)`
 	var patterns = arguments[arguments.length-1];
-	var paths = arguments.slice(arguments.length-1);
+	var paths = Array.prototype.slice.call(arguments, 0, arguments.length-1);
 	return sander.readdirSync.call( paths ).then( allFiles => {
 		return _filterPattern(allFiles, patterns);
 	});
