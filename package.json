@@ -1,11 +1,11 @@
 {
   "name": "sandermatch",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Filesystem functions that return filenames matching a minimatch pattern",
   "main": "es5/sandermatch.js",
   "jsnext:main": "src/sandermatch.js",
   "scripts": {
-    "install": "js node_modules/.bin/gobble -f build es5"
+    "prepublish": "js node_modules/.bin/gobble -f build es5"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,13 @@
   ],
   "author": "Iván Sánchez Ortega <ivan@sanchezortega.es>",
   "license": "Beerware",
-  "dependencies": {
+  "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "gobble": "^0.10.2",
     "gobble-babel": "^5.5.8",
-    "gobble-cli": "^0.6.0",
+    "gobble-cli": "^0.6.0"
+  },
+  "dependencies": {
     "minimatch": "^3.0.0",
     "sander": "^0.4.0"
   }
